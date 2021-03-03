@@ -52,6 +52,8 @@ def main():
         dirname = "C:\\Users\hwzhao\Pictures\Bing"       # 图片要被保存在的位置
     elif system == 'Linux':
         dirname = "/home/iscs/Pictures/Bing"       # 图片要被保存在的位置
+    else:
+        dirname = "/Users/zhangdezhi/Pictures/Bing"
 
     
     img_url = get_img_url()
@@ -61,5 +63,8 @@ def main():
     elif system == 'Linux':
         bashCommand = r"gsettings set org.gnome.desktop.background picture-uri 'file://"+filepath +"'"
         os.system(bashCommand)
-
+    else:
+        bashCommand = r"osascript -e 'tell application"+" \""+"System Events" +"\""+" to set picture of every desktop to" + " \""+filepath+"\"" + "'"
+        print(bashCommand)
+        os.system(bashCommand)
 main()
