@@ -2,3 +2,12 @@
 
 ***.bat  设置删除旧壁纸,下载新壁纸
 ***.ahk 设置快捷键更新壁纸
+
+
+须要安装模块
+
+```bash
+
+$ sudo pip3 install  urllib3
+$ sudo pip3 install  requests 
+```

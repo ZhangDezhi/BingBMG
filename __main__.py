@@ -11,6 +11,7 @@ import urllib.request
 import requests         
 import os.path
 import ctypes
+import platform
 
 def save_img(img_url,dirname):
     #保存图片到磁盘文件夹dirname中
@@ -45,9 +46,20 @@ def set_img_as_wallpaper(filepath):
     ctypes.windll.user32.SystemParametersInfoW(20, 0, filepath, 0)
 
 def main():
-    dirname = "C:\\Users\hwzhao\Pictures\Bing"       # 图片要被保存在的位置
+    system=platform.system()
+    plat_version=platform.platform()
+    if system == 'Windows':
+        dirname = "C:\\Users\hwzhao\Pictures\Bing"       # 图片要被保存在的位置
+    elif system == 'Linux':
+        dirname = "/home/iscs/Pictures/Bing"       # 图片要被保存在的位置
+
+    
     img_url = get_img_url()
     filepath = save_img(img_url, dirname)   # 图片文件的的路径
-    set_img_as_wallpaper(filepath)
+    if system == 'Windows':
+        set_img_as_wallpaper(filepath)
+    elif system == 'Linux':
+        bashCommand = r"gsettings set org.gnome.desktop.background picture-uri 'file://"+filepath +"'"
+        os.system(bashCommand)
 
 main()
