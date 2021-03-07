@@ -1,6 +1,3 @@
-
-
-
 @ECHO OFF
 :; python3 __main__.py  ; exit $?
 :: TODO: 备份当前壁纸

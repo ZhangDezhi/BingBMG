@@ -4,7 +4,7 @@
 # * Author         :  ZangDezhi
 # * Email          :  winzdz@hotmail.com
 # * Create Time    : 2020-01-09 15:00
-# Last Modified  : 2020-01-09 15:06:48
+# Last Modified  : 2021-03-07 21:53:41
 # * FileName       : __main__.py
 #**************************************************
 import urllib.request
@@ -12,6 +12,7 @@ import requests
 import os.path
 import ctypes
 import platform
+import datetime
 
 def save_img(img_url,dirname):
     #保存图片到磁盘文件夹dirname中
@@ -21,7 +22,9 @@ def save_img(img_url,dirname):
             #os.mkdir(dirname)
             os.makedirs(dirname)
         #获得图片文件名，包括后缀
-        basename = "bingImage.jpg"
+        curr_time = datetime.datetime.now()
+        time_str = datetime.datetime.strftime(curr_time,'%Y-%m-%d')
+        basename = "bingImage"+"_"+time_str+".jpg"
         #拼接目录与文件名，得到图片路径
         filepath = os.path.join(dirname, basename)
         #下载图片，并保存到文件夹中
@@ -55,7 +58,7 @@ def main():
     else:
         dirname = "/Users/zhangdezhi/Pictures/Bing"
 
-    
+   #设置为壁纸 
     img_url = get_img_url()
     filepath = save_img(img_url, dirname)   # 图片文件的的路径
     if system == 'Windows':
